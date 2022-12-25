@@ -11,7 +11,7 @@ public class secretPhrase extends ListenerAdapter {
 
     boolean isActive = true;
     String secret = "abrakadabra";
-
+//a
     @Override
     public void onMessageReceived(@NotNull MessageReceivedEvent event) {
         if(event.getMessage().getContentRaw().toLowerCase(Locale.ROOT).contains(secret) && isActive){
