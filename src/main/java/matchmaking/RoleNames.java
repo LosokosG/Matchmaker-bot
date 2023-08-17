@@ -72,6 +72,8 @@ public class RoleNames extends ListenerAdapter {
             Role rogue = guild.getRoleById("1055200807227773018");
             Role cleric = guild.getRoleById("1055200997493977111");
             Role fighter = guild.getRoleById("1055201136119910521");
+            Role bard = guild.getRoleById("1141379067359268906");
+            Role warlock = guild.getRoleById("1141379724183085076");
 
             List<Role> roleList = new ArrayList<>();
 
@@ -81,6 +83,8 @@ public class RoleNames extends ListenerAdapter {
             roleList.add(rogue);
             roleList.add(cleric);
             roleList.add(fighter);
+            roleList.add(bard);
+            roleList.add(warlock);
 
             for (Role role : roleList){
                 guild.removeRoleFromMember(event.getMember(),role).queue();
@@ -93,33 +97,52 @@ public class RoleNames extends ListenerAdapter {
                     event.getGuild().addRoleToMember(event.getMember(), barbarian).queue();
                     appendName(event.getMember(), barbarian, guild);
                     event.reply("Przyznano rol\u0119: " + barbarian.getAsMention()).setEphemeral(true).queue();
+                    System.out.println("Przyznano rol\u0119: " + barbarian.getName() + " graczowi " + event.getMember().getUser().getName());
                     break;
                 case "ranger":
                     event.getGuild().addRoleToMember(event.getMember(), ranger).queue();
                     appendName(event.getMember(), ranger, guild);
                     event.reply("Przyznano rol\u0119: " + ranger.getAsMention()).setEphemeral(true).queue();
+                    System.out.println("Przyznano rol\u0119: " + ranger.getName() + " graczowi " + event.getMember().getUser().getName());
                     break;
                 case "wizard":
                     event.getGuild().addRoleToMember(event.getMember(), wizard).queue();
                     appendName(event.getMember(), wizard, guild);
                     event.reply("Przyznano rol\u0119: " + wizard.getAsMention()).setEphemeral(true).queue();
+                    System.out.println("Przyznano rol\u0119: " + wizard.getName() + " graczowi " + event.getMember().getUser().getName());
                     break;
                 case "rogue":
                     event.getGuild().addRoleToMember(event.getMember(), rogue).queue();
                     appendName(event.getMember(), rogue, guild);
                     event.reply("Przyznano rol\u0119: " + rogue.getAsMention()).setEphemeral(true).queue();
+                    System.out.println("Przyznano rol\u0119: " + rogue.getName() + " graczowi " + event.getMember().getUser().getName());
                     break;
                 case "cleric":
                     event.getGuild().addRoleToMember(event.getMember(), cleric).queue();
                     appendName(event.getMember(), cleric, guild);
                     event.reply("Przyznano rol\u0119: " + cleric.getAsMention()).setEphemeral(true).queue();
+                    System.out.println("Przyznano rol\u0119: " + cleric.getName() + " graczowi " + event.getMember().getUser().getName());
                     break;
                 case "fighter":
                     event.getGuild().addRoleToMember(event.getMember(), fighter).queue();
                     appendName(event.getMember(), fighter, guild);
                     event.reply("Przyznano rol\u0119: " + fighter.getAsMention()).setEphemeral(true).queue();
+                    System.out.println("Przyznano rol\u0119: " + fighter.getName() + " graczowi " + event.getMember().getUser().getName());
+                    break;
+                case "bard":
+                    event.getGuild().addRoleToMember(event.getMember(), bard).queue();
+                    appendName(event.getMember(), warlock, guild);
+                    event.reply("Przyznano rol\u0119: " + bard.getAsMention()).setEphemeral(true).queue();
+                    System.out.println("Przyznano rol\u0119: " + bard.getName() + " graczowi " + event.getMember().getUser().getName());
+                    break;
+                case "warlock":
+                    event.getGuild().addRoleToMember(event.getMember(), warlock).queue();
+                    appendName(event.getMember(), warlock, guild);
+                    event.reply("Przyznano rol\u0119: " + warlock.getAsMention()).setEphemeral(true).queue();
+                    System.out.println("Przyznano rol\u0119: " + warlock.getName() + " graczowi " + event.getMember().getUser().getName());
                     break;
             }
+
         }
     }
 
@@ -134,6 +157,8 @@ public class RoleNames extends ListenerAdapter {
         klasyString.add(" [ROGUE]");
         klasyString.add(" [CLERIC]");
         klasyString.add(" [FIGHTER]");
+        klasyString.add(" [BARD]");
+        klasyString.add(" [WARLOCK]");
 
         String memberName = member.getEffectiveName();
 
@@ -158,6 +183,8 @@ public class RoleNames extends ListenerAdapter {
             Role rogue = guild.getRoleById("1055200807227773018");
             Role cleric = guild.getRoleById("1055200997493977111");
             Role fighter = guild.getRoleById("1055201136119910521");
+            Role bard = guild.getRoleById("1141379067359268906");
+            Role warlock = guild.getRoleById("1141379724183085076");
 
             String memberEffectiveName = member.getEffectiveName();
 
@@ -174,6 +201,10 @@ public class RoleNames extends ListenerAdapter {
                 member.modifyNickname(memberEffectiveName + " [CLERIC]").queue();
             } else if (roleAdded.equals(fighter)) {
                 member.modifyNickname(memberEffectiveName + " [FIGHTER]").queue();
+            }else if (roleAdded.equals(bard)) {
+                member.modifyNickname(memberEffectiveName + " [BARD]").queue();
+            }else if (roleAdded.equals(warlock)) {
+                member.modifyNickname(memberEffectiveName + " [WARLOCK]").queue();
             }
 
         }, 1, TimeUnit.SECONDS); // Delay of 5 seconds
