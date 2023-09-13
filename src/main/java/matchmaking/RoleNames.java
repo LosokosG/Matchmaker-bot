@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent;
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.SelectMenuInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -131,7 +132,7 @@ public class RoleNames extends ListenerAdapter {
                     break;
                 case "bard":
                     event.getGuild().addRoleToMember(event.getMember(), bard).queue();
-                    appendName(event.getMember(), warlock, guild);
+                    appendName(event.getMember(), bard, guild);
                     event.reply("Przyznano rol\u0119: " + bard.getAsMention()).setEphemeral(true).queue();
                     System.out.println("Przyznano rol\u0119: " + bard.getName() + " graczowi " + event.getMember().getUser().getName());
                     break;
@@ -146,6 +147,40 @@ public class RoleNames extends ListenerAdapter {
         }
     }
 
+    @Override
+    public void onButtonInteraction(ButtonInteractionEvent event) {
+        if(event.getInteraction().getButton().getId().equals("reset")){
+
+            Guild guild = event.getGuild();
+
+            Role barbarian = guild.getRoleById("1055200791759163402");
+            Role ranger = guild.getRoleById("1055200800252624907");
+            Role wizard = guild.getRoleById("1055200804279177236");
+            Role rogue = guild.getRoleById("1055200807227773018");
+            Role cleric = guild.getRoleById("1055200997493977111");
+            Role fighter = guild.getRoleById("1055201136119910521");
+            Role bard = guild.getRoleById("1141379067359268906");
+            Role warlock = guild.getRoleById("1141379724183085076");
+
+            List<Role> roleList = new ArrayList<>();
+
+            roleList.add(barbarian);
+            roleList.add(ranger);
+            roleList.add(wizard);
+            roleList.add(rogue);
+            roleList.add(cleric);
+            roleList.add(fighter);
+            roleList.add(bard);
+            roleList.add(warlock);
+
+            for (Role role : roleList){
+                guild.removeRoleFromMember(event.getMember(),role).queue();
+            }
+            prependName(event.getMember());
+            event.getInteraction().reply("Odebrano ci twoją klasę! \nJesteś zwykłym cywilem...").setEphemeral(true).queue();
+            System.out.println("Odebrano rolę: " + event.getMember().getUser().getName());
+        }
+    }
 
     private void prependName(Member member){
 

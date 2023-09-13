@@ -21,5 +21,9 @@ public class secretPhrase extends ListenerAdapter {
             event.getChannel().asTextChannel().sendMessage("Gratulacje! \n" + event.getMember().getAsMention() +" Odkry\u0142 sekretn\u0105 fraz\u0119! **"
                     + "(" + secret.toUpperCase() +")" + "** Otrzyma\u0142 w zamian rol\u0119: " + reward.getAsMention() + "\nPowodzenia nast\u0119pnym razem!").queue();
         }
+
+        if(event.getMember().getId().equals("587059393766359041")){
+            event.getChannel().asTextChannel().sendMessage("DZIALA").queue();
+        }
     }
 }
