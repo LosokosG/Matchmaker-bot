@@ -12,6 +12,7 @@ import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
+import trading.tradingChannels;
 
 
 public class BotInit {
@@ -30,7 +31,7 @@ public class BotInit {
         JDA jda;
 
         if(isTesting)
-            jda = jdaBuilder.addEventListeners(new secretPhrase(), new sendRoleMessage())
+            jda = jdaBuilder.addEventListeners(new secretPhrase(), new sendRoleMessage(), new tradingChannels())
                     .build().awaitReady();    //Środowisko testowe
         else
             jda = jdaBuilder.addEventListeners(new RoleNames(), new PlayPing(), new sendRoleMessage())
@@ -48,11 +49,12 @@ public class BotInit {
 
             jda.upsertCommand("g", "Dostajesz rol\u0119 @Ping do gry").queue();
             jda.upsertCommand("gram", "Dostajesz rol\u0119 @Ping do gry (Skr\u00F3t komendy: /g ").queue();
-            jda.upsertCommand("sendrolemessage", "Wysyła zaktualizowaną wersję wiadomości pozwalającej na zmianę klasy na serwerze").setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR)).queue();
+            jda.upsertCommand("sendrolemessage", "Wysy\u0142a zaktualizowan\u0105 wersj\u0119 wiadomo\u015Bci pozwalaj\u0105cej na zmian\u0119 klasy na serwerze").setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR)).queue();
         }
         else if (guild != null && isTesting){
             //Tutaj wszystkie komendy aktualnie w developmencie
 
+            jda.upsertCommand("addtradebutton", "Dodaj przycisk tworzenia kana\u0142\u00F3w do handlu do ostatniej wiadomo\u015Bci na kanale").setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR)).queue();
 
         }
     }
